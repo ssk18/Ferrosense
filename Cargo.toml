@@ -1,0 +1,26 @@
+# ───────────────────────────────────────────────────────────────
+# WORKSPACE ROOT  (a "virtual manifest": it has NO [package] of its
+# own — it only wires member crates together, like settings.gradle.kts)
+# ───────────────────────────────────────────────────────────────
+[workspace]
+# Which crates belong to this build. `cargo build` here builds them all
+# and shares ONE target/ dir + ONE Cargo.lock across every member.
+# (We'll add "crates/ffi" when we reach the Android bridge step.)
+members = ["crates/core"]
+
+# Dependency resolver version. "3" is the modern resolver that pairs with
+# edition 2024 and is MSRV-aware. It must be set explicitly on a virtual
+# manifest, because there's no package edition here to infer it from.
+resolver = "3"
+
+# ── Shared package metadata ──────────────────────────────────────
+# Values every member crate can inherit with `<key>.workspace = true`,
+# so version/edition live in ONE place (like a Gradle convention plugin).
+[workspace.package]
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"    # minimum Rust that can build us (edition 2024 floor)
+
+# [workspace.dependencies] — the "version catalog" (libs.versions.toml)
+# lives here. Empty for now; we add entries when core needs its first
+# external crate (e.g. a CRC or error-handling crate).

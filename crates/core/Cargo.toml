@@ -1,0 +1,14 @@
+[package]
+name = "ferrosense-core"        # registry-style name; hyphens allowed here
+
+# Inherit the shared values declared in the workspace root Cargo.toml:
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+# No [dependencies] yet — core is pure standard-library Rust for now.
+
+# NOTE: the library crate is IMPLIED by the presence of src/lib.rs.
+# Its *import* name is the package name with hyphens → underscores,
+# so other crates (and generated Kotlin later) refer to it as
+# `ferrosense_core`.
