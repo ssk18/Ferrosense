@@ -4,6 +4,16 @@
 //! and benchmarks on any host at native speed. The `//!` above is an *inner*
 //! doc comment: it documents the thing it's inside of (here, the whole crate).
 
+// ── Modules ──────────────────────────────────────────────────────────────
+// `mod reading;` tells the crate "the file reading.rs is part of me."
+// `pub use` lifts the Reading type to the crate root, so callers write
+// `ferrosense_core::Reading`, not `ferrosense_core::reading::Reading`.
+mod reading;
+pub use reading::Reading;
+
+mod crc;
+pub use crc::crc16;
+
 /// A temporary smoke-test target so we can prove the toolchain end-to-end.
 /// We'll replace this with real protocol types in the next session.
 ///

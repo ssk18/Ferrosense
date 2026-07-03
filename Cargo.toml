@@ -6,7 +6,13 @@
 # Which crates belong to this build. `cargo build` here builds them all
 # and shares ONE target/ dir + ONE Cargo.lock across every member.
 # (We'll add "crates/ffi" when we reach the Android bridge step.)
-members = ["crates/core"]
+members = ["crates/core", "crates/scratch"]
+
+# Root `cargo build`/`cargo test` target only core. `scratch` holds the
+# teaching demos, and SEVERAL ARE DELIBERATE COMPILE ERRORS (the error IS
+# the lesson) — they must never break the workspace build.
+# Run one explicitly:  cargo run -p scratch --bin <name>
+default-members = ["crates/core"]
 
 # Dependency resolver version. "3" is the modern resolver that pairs with
 # edition 2024 and is MSRV-aware. It must be set explicitly on a virtual
