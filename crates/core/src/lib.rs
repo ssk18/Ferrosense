@@ -14,6 +14,15 @@ pub use reading::Reading;
 mod crc;
 pub use crc::crc16;
 
+mod parse;
+pub use parse::{parse, ParseError};
+
+mod framing;
+pub use framing::find_frame;
+
+mod decoder;
+pub use decoder::Decoder;
+
 /// A temporary smoke-test target so we can prove the toolchain end-to-end.
 /// We'll replace this with real protocol types in the next session.
 ///
