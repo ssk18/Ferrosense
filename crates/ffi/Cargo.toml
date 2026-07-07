@@ -1,0 +1,17 @@
+[package]
+name = "ferrosense-ffi"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+# Produce a C-compatible dynamic library (.so on Android, .dylib on macOS) that
+# the JVM loads with `System.loadLibrary(...)`. This is what makes the crate
+# callable from Kotlin/Java at all.
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+# The pure logic we're exposing — the one-way dependency ffi → core.
+ferrosense-core = { path = "../core" }
+# Rust bindings to the JNI API: JNIEnv, jbyteArray, jlong, conversions, etc.
+jni = "0.21"

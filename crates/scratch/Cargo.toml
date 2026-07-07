@@ -1,0 +1,13 @@
+[package]
+name = "scratch"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+
+# Every file in src/bin/ is auto-discovered as its own tiny program
+# (a "binary target"). Run one with:
+#
+#     cargo run -p scratch --bin <file_name_without_.rs>
+#
+# Files whose header says ❌ are DELIBERATE compile errors — running them
+# prints the compiler error, and that error is the lesson.
